@@ -1,0 +1,119 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e9ecef;
+    background-color: black;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    /* Set maximum width for the content */
+    margin-top: 1rem;
+}
+
+aside {
+    width: 20%;
+    /* Reduced left side size */
+    background-color: black;
+    /* Left section background color */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+header {
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Class links list */
+ul#day-list {
+    list-style: none;
+    padding: 0;
+}
+
+ul#day-list li {
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+ul#day-list li h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    /* Added cursor pointer */
+}
+
+/* Collapsed subsections */
+ul#day-list li ul {
+    display: none;
+    padding-left: 1rem;
+}
+
+ul#day-list li.expanded ul {
+    display: block;
+}
+
+/* Video container */
+section.video-container {
+    text-align: center;
+    width: 70%;
+    padding: 0.5rem;
+    display: block;
+    min-height: 500%;
+    overflow: hidden;
+}
+
+#youtube-player {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    /* Add border for iframe */
+    border-radius: 8px;
+}
+
+#youtube-player iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#video-content {
+    width: 100%;
+    padding-bottom: 56.25%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    /* Add border for video content */
+    border-radius: 8px;
+}
+
+#video-content iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@media (max-width: 991.98px),
+print {
+    .aside {
+        padding-top: 1rem;
+    }
+}
