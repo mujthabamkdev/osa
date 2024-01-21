@@ -819,15 +819,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // Populate Section Dropdown
   excelData.forEach((item) => {
     const option = document.createElement("option");
-    option.value = item.day;
-    option.textContent = `Day ${item.day}`;
+    option.value = parseInt(item.Day);
+    option.textContent = `Day ${item.Day}`;
     sectionDropdown.appendChild(option);
   });
 
   // Handle Section Dropdown Change
   sectionDropdown.addEventListener("change", function () {
     const selectedSection = parseInt(sectionDropdown.value);
-    const selectedSubsections = Object.keys(excelData[selectedSection - 1]).filter(key => key !== 'day');
+    const selectedSubsections = Object.keys(excelData[selectedSection - 1]).filter(key => key !== 'Day');
 
     // Clear Subsection Dropdown
     subsectionDropdown.innerHTML = '<option value="" disabled selected>Select Subsection</option>';
@@ -847,7 +847,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedSubsection = subsectionDropdown.value;
 
     // Find the selected video URL
-    const selectedVideoUrl = excelData[excelData.findIndex(item => item.day === selectedDay)][selectedSubsection];
+    const selectedVideoUrl = excelData[excelData.findIndex(item => parseInt(item.Day) === selectedDay)][selectedSubsection];
     console.log(selectedVideoUrl);
     // Load the selected video
     loadYouTubeVideo(selectedVideoUrl);
