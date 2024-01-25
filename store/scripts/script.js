@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const classDropdown = document.getElementById("classDropdown");
   const sectionDropdown = document.getElementById("sectionDropdown");
   const subsectionDropdown = document.getElementById("subsectionDropdown");
   const videoContentContainer = document.getElementById("video-content");
-
-  const excelData = [
+  const excelDataClass1 = [
     {
       "Day": "1",
       "Quran": "https://youtu.be/2fUmBu_bdNE",
@@ -816,21 +816,51 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   ];
 
-  // Populate Section Dropdown
-  excelData.forEach((item) => {
+  const excelDataClass2 = [
+    { Day: 1, Subject1: "VideoURL1", Subject2: "VideoURL2", Subject3: "VideoURL3" },
+    // Add more entries as needed
+  ];
+
+  const excelDataClass3 = [
+    { Day: 1, Subject1: "VideoURL1", Subject2: "VideoURL2", Subject3: "VideoURL3" },
+    // Add more entries as needed
+  ];
+  // Populate Class Dropdown
+  const classes = ["Class 1", "Class 2", "Class 3"]; // Add your class names here
+  classes.forEach((className) => {
     const option = document.createElement("option");
-    option.value = parseInt(item.Day);
-    option.textContent = `Day ${item.Day}`;
-    sectionDropdown.appendChild(option);
+    option.value = className;
+    option.textContent = className;
+    classDropdown.appendChild(option);
+  });
+
+  // Handle Class Dropdown Change
+  classDropdown.addEventListener("change", function () {
+    const selectedClass = classDropdown.value;
+
+    // Clear Section and Subsection Dropdowns
+    sectionDropdown.innerHTML = '<option value="" disabled selected>Select Day</option>';
+    subsectionDropdown.innerHTML = '<option value="" disabled selected>Select Subject</option>';
+
+    // Load data based on the selected class
+    const classData = getClassData(selectedClass);
+
+    // Populate Section Dropdown
+    classData.forEach((item) => {
+      const option = document.createElement("option");
+      option.value = parseInt(item.Day);
+      option.textContent = `Day ${item.Day}`;
+      sectionDropdown.appendChild(option);
+    });
   });
 
   // Handle Section Dropdown Change
   sectionDropdown.addEventListener("change", function () {
     const selectedSection = parseInt(sectionDropdown.value);
-    const selectedSubsections = Object.keys(excelData[selectedSection - 1]).filter(key => key !== 'Day');
+    const selectedSubsections = Object.keys(getClassData(classDropdown.value)[selectedSection - 1]).filter(key => key !== 'Day');
 
     // Clear Subsection Dropdown
-    subsectionDropdown.innerHTML = '<option value="" disabled selected>Select Subsection</option>';
+    subsectionDropdown.innerHTML = '<option value="" disabled selected>Select Subject</option>';
 
     // Populate Subsection Dropdown
     selectedSubsections.forEach(subsection => {
@@ -847,13 +877,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedSubsection = subsectionDropdown.value;
 
     // Find the selected video URL
-    const selectedVideoUrl = excelData[excelData.findIndex(item => parseInt(item.Day) === selectedDay)][selectedSubsection];
-    console.log(selectedVideoUrl);
+    const selectedVideoUrl = getClassData(classDropdown.value)[getClassData(classDropdown.value).findIndex(item => parseInt(item.Day) === selectedDay)][selectedSubsection];
+
     // Load the selected video
     loadYouTubeVideo(selectedVideoUrl);
   });
-
-
 
   function loadYouTubeVideo(videoUrl) {
     const videoId = extractVideoId(videoUrl);
@@ -878,10 +906,6 @@ document.addEventListener("DOMContentLoaded", function () {
     videoContentContainer.appendChild(iframe);
   }
 
-
-
-
-
   function extractVideoId(url) {
     const regex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regex);
@@ -890,6 +914,20 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.error("Invalid YouTube URL:", url);
       return "";
+    }
+  }
+
+  function getClassData(className) {
+    // Replace this with your actual data retrieval logic
+    switch (className) {
+      case "Class 1":
+        return excelDataClass1;
+      case "Class 2":
+        return excelDataClass2;
+      case "Class 3":
+        return excelDataClass3;
+      default:
+        return [];
     }
   }
 });
