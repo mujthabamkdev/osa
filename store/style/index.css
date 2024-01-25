@@ -6,23 +6,19 @@
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 1rem;
-    /* Adjusted padding to maintain some space */
     border: 2px solid black;
     z-index: 50;
     text-align: center;
 }
 
 #qrPopup {
-    max-width: 30%;
+    max-width: 40vw;
     height: auto;
 }
 
-/* Style for the QR code image */
 #qrCodeImage {
     max-width: 100%;
-    /* Ensure the image doesn't exceed the width of the container */
     height: auto;
-    /* Maintain aspect ratio */
 }
 
 #closeBtn {
