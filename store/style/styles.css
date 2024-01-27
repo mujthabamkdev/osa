@@ -5,8 +5,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #e9ecef;
-    background-color: black;
+    color: black;
+    background-color: white;
 }
 
 main {
@@ -21,7 +21,7 @@ main {
 aside {
     width: 20%;
     /* Reduced left side size */
-    background-color: black;
+    background-color: white;
     /* Left section background color */
     padding: 1rem;
     border-radius: 8px;
@@ -32,6 +32,14 @@ header {
     padding: 1rem;
     text-align: center;
     margin-bottom: 1rem;
+}
+
+mastercolorblue {
+    background-color: #21779A;
+}
+
+mastercolorgreen{
+    background-color: #2C8C44;
 }
 
 /* Class links list */
