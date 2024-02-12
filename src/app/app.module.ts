@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ClassRoomComponent } from './modules/class-room/class-room.component';
 import { SharedDataService } from '../app/services/shared-data.service';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +15,8 @@ import { SharedDataService } from '../app/services/shared-data.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [SharedDataService],
   bootstrap: [AppComponent]

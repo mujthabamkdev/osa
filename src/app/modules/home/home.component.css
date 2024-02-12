@@ -54,3 +54,7 @@
     max-width: 560px;
     margin-bottom: 1rem;
 }
+
+a {
+    cursor: pointer;
+}

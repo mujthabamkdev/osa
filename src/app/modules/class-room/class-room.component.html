@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Sharee'a Academy</title>
-</head>
-
 <body class="bg-white text-black font-sans p-4">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="../index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="../store/images/osa-logo.png" class="h-8" alt="OSA Logo">
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse" (click)="redirectToHome()">
+            <img src="assets/images/osa-logo.png" class="h-8" alt="OSA Logo">
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">Home</span>
         </a>
     </div>
 
     <div class="container mx-auto text-center">
         <h1 class="text-2xl font-bold mb-1 w-full">Online Sharee'a Academy</h1>
+
         <!-- Class Dropdown -->
         <div class="mb-4 inline-block relative">
             <select id="classDropdown"
-                class="appearance-none bg-white border border-gray-500 text-black py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-700">
+                class="appearance-none bg-white border border-gray-500 text-black py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-700"
+                [(ngModel)]="selectedClass" (change)="onClassChange()">
                 <option value="" disabled selected>Select Class</option>
-                <!-- Class options will be dynamically added here -->
+                <option *ngFor="let className of classes" [value]="className">{{ className }}</option>
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-black">
                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -35,8 +28,10 @@
         <!-- Section Dropdown -->
         <div class="mb-4 inline-block relative">
             <select id="sectionDropdown"
-                class="appearance-none bg-white border border-gray-500 text-black py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-700">
+                class="appearance-none bg-white border border-gray-500 text-black py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-700"
+                [(ngModel)]="selectedSection" (change)="onSectionChange()">
                 <option value="" disabled selected>Select Day</option>
+                <option *ngFor="let item of getClassData()" [value]="item.Day">Day {{ item.Day }}</option>
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-black">
                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -48,11 +43,21 @@
 
         <!-- Subsection Dropdown -->
         <div class="mb-4 inline-block relative">
-            <select id="subsectionDropdown"
-                class="appearance-none bg-white border border-gray-500 text-black py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-700">
-                <option value="" disabled selected>Select Subject</option>
-                <!-- Subsection options will be dynamically added here -->
+            <select id="sectionDropdown" [ngModel]="form.get('selectedSection')?.value"
+                (ngModelChange)="form.get('selectedSection')?.setValue($event)" (change)="onSectionChange()">
+                <!-- ... (options dynamically added) ... -->
             </select>
+
+
+            <select id="sectionDropdown" [(ngModel)]="form.controls['selectedSection'].getRawValue"
+                (change)="onSectionChange()">
+                <!-- ... (options dynamically added) ... -->
+            </select>
+
+            <!-- <select id="subsectionDropdown" [(ngModel)]="form.controls['selectedSubsection'].getRawValue"
+                (change)="loadYouTubeVideo(getClassData()[form.controls['selectedSection'].value - 1][form.controls['selectedSubsection'].value])">
+            </select> -->
+
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-black">
                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M0 0h20v20H0z" fill="none" />
@@ -67,5 +72,3 @@
         </div>
     </div>
 </body>
-
-</html>

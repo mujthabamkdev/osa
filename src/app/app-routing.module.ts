@@ -5,6 +5,7 @@ import { ClassRoomComponent } from './modules/class-room/class-room.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'class-room', component: ClassRoomComponent }
 ];
 
